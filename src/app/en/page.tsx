@@ -93,38 +93,47 @@ export default function EnglishHome() {
         </div>
       </nav>
 
-      {/* Hero Section with Inline Chat */}
+      {/* Hero Section */}
       <section
-        id="chat"
-        className="section-bg-fixed min-h-screen flex items-center justify-center px-6 pt-24 pb-12 relative overflow-hidden"
+        className="section-bg-fixed min-h-screen flex items-center justify-center px-6 relative overflow-hidden"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(10,10,15,0.5), rgba(10,10,15,0.7)), url('${heroImg}')`,
         }}
       >
         <div className="absolute inset-0 ai-grid pointer-events-none" />
         <div className="absolute inset-0 ai-glow pointer-events-none" />
-        <div className="w-full max-w-2xl mx-auto relative z-10">
-          <div className="text-center mb-6">
-            <p className="text-xs font-semibold text-red-400 tracking-widest uppercase mb-3">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-10 sm:p-14 shadow-2xl max-w-2xl">
+            <p className="text-xs font-semibold text-red-800 tracking-widest uppercase mb-4">
               TONLA MATERIALS
             </p>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-2">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-zinc-900 leading-tight mb-5 text-balance">
               Door-to-door raw material supply.
             </h1>
+            <p className="text-zinc-600 mb-3 leading-relaxed">
+              For manufacturers only. Rubber compounds, technical materials, and
+              off-spec polymers &mdash; delivered with technology-powered supply chain
+              management.
+            </p>
             {mounted && (
-              <p className="text-sm sm:text-base font-medium text-red-300 italic">
+              <p className="text-red-800 text-sm font-semibold mb-6 italic">
                 &ldquo;{tagline}&rdquo;
               </p>
             )}
-          </div>
-          <HeroChat lang="en" />
-          <div className="text-center mt-4">
-            <a
-              href="#products"
-              className="text-xs text-zinc-400 hover:text-white transition-colors uppercase tracking-wider"
-            >
-              &darr; Explore our products
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="#contact"
+                className="px-7 py-3 bg-zinc-900 text-white text-sm font-medium tracking-wide uppercase hover:bg-zinc-800 transition-all text-center"
+              >
+                Get In Touch
+              </a>
+              <a
+                href="#products"
+                className="px-7 py-3 border border-zinc-300 text-zinc-700 text-sm font-medium tracking-wide uppercase hover:bg-zinc-100 transition-all text-center"
+              >
+                Our Products
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -354,7 +363,7 @@ export default function EnglishHome() {
         </div>
       </section>
 
-      {/* CTA / Contact Section */}
+      {/* CTA / Contact Section with Chat */}
       <section
         id="contact"
         className="cta-overlay py-24 px-6"
@@ -362,22 +371,21 @@ export default function EnglishHome() {
           backgroundImage: `linear-gradient(to bottom, rgba(127,29,29,0.85), rgba(80,10,10,0.92)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80')`,
         }}
       >
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs font-semibold text-red-300 tracking-widest uppercase mb-3">
-            Contact
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-            Let&apos;s Get Started
-          </h2>
-          <p className="text-red-100/70 mb-8 max-w-lg mx-auto leading-relaxed">
-            Use the chat above to discuss your raw material supply needs.
-          </p>
-          <a
-            href="#chat"
-            className="px-8 py-3.5 bg-white text-red-900 font-medium text-sm tracking-wide uppercase hover:bg-red-50 transition-all inline-block"
-          >
-            Back to Chat
-          </a>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <p className="text-xs font-semibold text-red-300 tracking-widest uppercase mb-3">
+              Contact
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+              Let&apos;s Get Started
+            </h2>
+            <p className="text-red-100/70 max-w-lg mx-auto leading-relaxed">
+              Use the chat below to discuss your raw material supply needs.
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <HeroChat lang="en" />
+          </div>
         </div>
       </section>
 

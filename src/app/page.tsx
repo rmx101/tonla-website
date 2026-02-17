@@ -102,38 +102,50 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section with Inline Chat */}
+      {/* Hero Section */}
       <section
-        id="chat"
-        className="section-bg-fixed min-h-screen flex items-center justify-center px-6 pt-24 pb-12 relative overflow-hidden"
+        className="section-bg-fixed min-h-screen flex items-center justify-center px-6 relative overflow-hidden"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(10,10,15,0.5), rgba(10,10,15,0.7)), url('${heroImg}')`,
         }}
       >
         <div className="absolute inset-0 ai-grid pointer-events-none" />
         <div className="absolute inset-0 ai-glow pointer-events-none" />
-        <div className="w-full max-w-2xl mx-auto relative z-10">
-          <div className="text-center mb-6">
-            <p className="text-xs font-semibold text-red-400 tracking-widest uppercase mb-3">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-10 sm:p-14 shadow-2xl max-w-2xl">
+            <p className="text-xs font-semibold text-red-800 tracking-widest uppercase mb-4">
               TONLA MALZEME
             </p>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-2">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-zinc-900 leading-tight mb-3">
               Kap&#305;dan kap&#305;ya hammadde tedariki.
             </h1>
             {mounted && (
-              <p className="text-sm sm:text-base font-medium text-red-300 italic">
+              <p className="text-lg sm:text-xl font-semibold text-red-700 mb-4 italic">
                 &ldquo;{tagline}&rdquo;
               </p>
             )}
-          </div>
-          <HeroChat lang="tr" />
-          <div className="text-center mt-4">
-            <a
-              href="#urunler"
-              className="text-xs text-zinc-400 hover:text-white transition-colors uppercase tracking-wider"
-            >
-              &darr; &Uuml;r&uuml;nlerimizi ke&#351;fedin
-            </a>
+            <p className="text-zinc-600 mb-3 leading-relaxed">
+              Sadece &uuml;reticiler i&ccedil;in. Kau&ccedil;uk hammadde, teknik bile&#351;ikler ve
+              off-spec polimerler &mdash; modern teknolojiyle
+              desteklenen tedarik y&ouml;netimi ile do&#287;rudan kap&#305;n&#305;za.
+            </p>
+            <p className="text-red-800 text-sm font-medium mb-6">
+              Hemen bizimle ileti&#351;ime ge&ccedil;in.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="#iletisim"
+                className="px-7 py-3 bg-zinc-900 text-white text-sm font-medium tracking-wide uppercase hover:bg-zinc-800 transition-all text-center"
+              >
+                Bizimle &#304;leti&#351;ime Ge&ccedil;in
+              </a>
+              <a
+                href="#urunler"
+                className="px-7 py-3 border border-zinc-300 text-zinc-700 text-sm font-medium tracking-wide uppercase hover:bg-zinc-100 transition-all text-center"
+              >
+                &Uuml;r&uuml;nlerimiz
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -361,7 +373,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA / Contact Section */}
+      {/* CTA / Contact Section with Chat */}
       <section
         id="iletisim"
         className="cta-overlay py-24 px-6"
@@ -369,23 +381,22 @@ export default function Home() {
           backgroundImage: `linear-gradient(to bottom, rgba(127,29,29,0.85), rgba(80,10,10,0.92)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80')`,
         }}
       >
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs font-semibold text-red-300 tracking-widest uppercase mb-3">
-            &#304;leti&#351;im
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-            Hemen Ba&#351;layal&#305;m
-          </h2>
-          <p className="text-red-100/70 mb-8 max-w-lg mx-auto leading-relaxed">
-            Hammadde tedarik ihtiya&ccedil;lar&#305;n&#305;z hakk&#305;nda konu&#351;mak i&ccedil;in
-            yukar&#305;daki sohbet alan&#305;n&#305; kullan&#305;n.
-          </p>
-          <a
-            href="#chat"
-            className="px-8 py-3.5 bg-white text-red-900 font-medium text-sm tracking-wide uppercase hover:bg-red-50 transition-all inline-block"
-          >
-            Sohbete D&ouml;n
-          </a>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <p className="text-xs font-semibold text-red-300 tracking-widest uppercase mb-3">
+              &#304;leti&#351;im
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+              Hemen Ba&#351;layal&#305;m
+            </h2>
+            <p className="text-red-100/70 max-w-lg mx-auto leading-relaxed">
+              Hammadde tedarik ihtiya&ccedil;lar&#305;n&#305;z hakk&#305;nda konu&#351;mak i&ccedil;in
+              a&#351;a&#287;&#305;daki sohbet alan&#305;n&#305; kullan&#305;n.
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <HeroChat lang="tr" />
+          </div>
         </div>
       </section>
 
