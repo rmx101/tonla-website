@@ -2,43 +2,99 @@
 
 import ChatWidget from "@/components/ChatWidget";
 import Link from "next/link";
+import { useState, useEffect, useMemo, useCallback } from "react";
+
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1652878856788-6dc9e56c9235?w=1920&q=80",
+  "https://images.unsplash.com/photo-1756705406506-50500a12463c?w=1920&q=80",
+  "https://images.unsplash.com/photo-1637844528679-f91e0b15f3e3?w=1920&q=80",
+  "https://images.unsplash.com/photo-1683436491260-37c6c692cf51?w=1920&q=80",
+];
+
+const PRODUCTS_IMAGES = [
+  "https://images.unsplash.com/photo-1644079446600-219068676743?w=1920&q=80",
+  "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1920&q=80",
+  "https://images.unsplash.com/photo-1606824722920-4c652a70f348?w=1920&q=80",
+];
+
+const LOGISTICS_IMAGES = [
+  "https://images.unsplash.com/photo-1563147236-8b428c840b75?w=1920&q=80",
+  "https://images.unsplash.com/photo-1593617762209-00636c2ca9c6?w=1920&q=80",
+  "https://images.unsplash.com/photo-1602009775595-f35cf45d9f33?w=1920&q=80",
+];
+
+const TAGLINES_TR = [
+  "Bizden al\u0131n, bize sat\u0131n. Tonla.",
+  "Tonla al. Kap\u0131nda.",
+  "H\u0131zl\u0131. Do\u011fru. G\u00fcvenilir.",
+  "Siz \u00fcretin, gerisini bize b\u0131rak\u0131n.",
+  "K\u00fcresel kaynak, yerel teslim.",
+  "Teknolojiyle g\u00fc\u00e7lendirilmi\u015f tedarik.",
+  "Her projeye haz\u0131r, her \u00f6l\u00e7e\u011fe uygun.",
+];
+
+function pickRandom<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+  const [dark, setDark] = useState(true);
+  const heroImg = useMemo(() => pickRandom(HERO_IMAGES), []);
+  const productsImg = useMemo(() => pickRandom(PRODUCTS_IMAGES), []);
+  const logisticsImg = useMemo(() => pickRandom(LOGISTICS_IMAGES), []);
+  const tagline = useMemo(() => pickRandom(TAGLINES_TR), []);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const toggleTheme = useCallback(() => setDark((d) => !d), []);
+
   return (
-    <main className="min-h-screen bg-white">
+    <main className={`min-h-screen ${dark ? "bg-zinc-950" : "bg-white"} transition-colors duration-300`}>
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-40">
+      <nav className={`fixed top-0 w-full ${dark ? "bg-zinc-950/90 border-white/5" : "bg-white/90 border-zinc-200"} backdrop-blur-md border-b z-40 transition-colors duration-300`}>
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight text-slate-900">
+          <div className="flex items-center gap-3">
+            <span className={`text-xl font-bold tracking-tight ${dark ? "text-white" : "text-zinc-900"}`}>
               TONLA
             </span>
-            <span className="text-xs text-slate-400 hidden sm:inline">
+            <span className={`text-xs hidden sm:inline font-medium tracking-wider ${dark ? "text-zinc-500" : "text-zinc-400"}`}>
               MALZEME
             </span>
           </div>
           <div className="flex items-center gap-6">
-            <a
-              href="#hizmetler"
-              className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              Hizmetler
+            <a href="#urunler" className={`text-sm ${dark ? "text-zinc-400 hover:text-white" : "text-zinc-500 hover:text-zinc-900"} transition-colors hidden sm:inline`}>
+              &Uuml;r&uuml;nler
             </a>
-            <a
-              href="#hakkimizda"
-              className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              Hakk&#305;m&#305;zda
+            <a href="#lojistik" className={`text-sm ${dark ? "text-zinc-400 hover:text-white" : "text-zinc-500 hover:text-zinc-900"} transition-colors hidden sm:inline`}>
+              Lojistik
             </a>
-            <a
-              href="#iletisim"
-              className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
-            >
+            <a href="#teknoloji" className={`text-sm ${dark ? "text-zinc-400 hover:text-white" : "text-zinc-500 hover:text-zinc-900"} transition-colors hidden sm:inline`}>
+              Teknoloji
+            </a>
+            <a href="#iletisim" className={`text-sm ${dark ? "text-zinc-400 hover:text-white" : "text-zinc-500 hover:text-zinc-900"} transition-colors hidden sm:inline`}>
               &#304;leti&#351;im
             </a>
+            <button
+              onClick={toggleTheme}
+              className={`p-1.5 rounded-md border ${dark ? "text-zinc-500 hover:text-white border-zinc-700" : "text-zinc-400 hover:text-zinc-900 border-zinc-300"} transition-colors`}
+              aria-label="Toggle theme"
+            >
+              {dark ? (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                </svg>
+              )}
+            </button>
             <Link
               href="/en"
-              className="text-xs text-slate-400 hover:text-slate-600 border border-slate-200 px-2 py-1 rounded transition-colors"
+              className={`text-xs border px-2.5 py-1 rounded ${dark ? "text-zinc-500 hover:text-white border-zinc-700" : "text-zinc-400 hover:text-zinc-900 border-zinc-300"} transition-colors`}
             >
               EN
             </Link>
@@ -47,215 +103,295 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-medium text-slate-500 tracking-widest uppercase mb-6">
-            End&uuml;striyel Hammadde Tedarik
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6 text-balance">
-            Kap&#305;dan kap&#305;ya hammadde tedariki.{" "}
-            <span className="text-slate-400">Sadece &uuml;reticiler i&ccedil;in.</span>
-          </h1>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            TONLA MALZEME END&Uuml;STR&#304;YEL HAMMADDE T&#304;CARET LTD. &#350;T&#304; olarak,
-            &uuml;retici firmalara g&uuml;venilir ve zaman&#305;nda hammadde tedariki
-            sa&#287;l&#305;yoruz.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => {
-                const chatBtn = document.querySelector(
-                  'button[aria-label="Chat"]'
-                ) as HTMLButtonElement;
-                chatBtn?.click();
-              }}
-              className="px-8 py-3.5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all font-medium text-sm shadow-lg shadow-slate-900/20"
-            >
-              Bizimle &#304;leti&#351;ime Ge&ccedil;in
-            </button>
-            <a
-              href="#hizmetler"
-              className="px-8 py-3.5 border border-slate-200 text-slate-700 rounded-xl hover:border-slate-300 hover:bg-slate-50 transition-all font-medium text-sm"
-            >
-              Hizmetlerimiz
-            </a>
+      <section
+        className="section-bg-fixed min-h-screen flex items-center justify-center px-6 relative overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(10,10,15,0.5), rgba(10,10,15,0.7)), url('${heroImg}')`,
+        }}
+      >
+        <div className="absolute inset-0 ai-grid pointer-events-none" />
+        <div className="absolute inset-0 ai-glow pointer-events-none" />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-10 sm:p-14 shadow-2xl max-w-2xl">
+            <p className="text-xs font-semibold text-red-800 tracking-widest uppercase mb-4">
+              TONLA MALZEME
+            </p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-zinc-900 leading-tight mb-3">
+              Kap&#305;dan kap&#305;ya hammadde tedariki.
+            </h1>
+            <p className="text-lg sm:text-xl font-semibold text-red-700 mb-4 italic">
+              {mounted ? tagline : TAGLINES_TR[0]}
+            </p>
+            <p className="text-zinc-600 mb-3 leading-relaxed">
+              Sadece &uuml;reticiler i&ccedil;in. Kau&ccedil;uk hammadde, teknik bile&#351;ikler ve
+              off-spec polimerler &mdash; modern teknolojiyle
+              desteklenen tedarik y&ouml;netimi ile do&#287;rudan kap&#305;n&#305;za.
+            </p>
+            <p className="text-red-800 text-sm font-medium mb-6">
+              Hemen bizimle ileti&#351;ime ge&ccedil;in.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => {
+                  const chatBtn = document.querySelector(
+                    'button[aria-label="Chat"]'
+                  ) as HTMLButtonElement;
+                  chatBtn?.click();
+                }}
+                className="px-7 py-3 bg-zinc-900 text-white text-sm font-medium tracking-wide uppercase hover:bg-zinc-800 transition-all"
+              >
+                Bizimle &#304;leti&#351;ime Ge&ccedil;in
+              </button>
+              <a
+                href="#urunler"
+                className="px-7 py-3 border border-zinc-300 text-zinc-700 text-sm font-medium tracking-wide uppercase hover:bg-zinc-100 transition-all text-center"
+              >
+                &Uuml;r&uuml;nlerimiz
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="hizmetler" className="py-20 px-6 bg-slate-50">
+      {/* Rubber Raw Materials Section */}
+      <section
+        id="urunler"
+        className={`py-24 px-6 relative transition-colors duration-300 ${dark ? "section-bg" : "bg-zinc-50"}`}
+        style={dark ? { backgroundImage: `linear-gradient(to bottom, rgba(10,10,15,0.8), rgba(10,10,15,0.88)), url('${productsImg}')` } : undefined}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-sm font-medium text-slate-500 tracking-widest uppercase mb-3">
-              Hizmetlerimiz
+            <p className={`text-xs font-semibold tracking-widest uppercase mb-3 ${dark ? "text-red-400" : "text-red-700"}`}>
+              &Uuml;r&uuml;n Yelpazesi
             </p>
-            <h2 className="text-3xl font-bold text-slate-900">
-              Neden TONLA?
+            <h2 className={`text-3xl sm:text-4xl font-extrabold mb-4 ${dark ? "text-white" : "text-zinc-900"}`}>
+              Kau&ccedil;uk Hammaddeler
             </h2>
+            <p className={`max-w-2xl mx-auto ${dark ? "text-zinc-400" : "text-zinc-600"}`}>
+              End&uuml;striyel &uuml;retim i&ccedil;in geni&#351; yelpazede kau&ccedil;uk hammadde
+              ve bile&#351;ik tedariki sa&#287;l&#305;yoruz.
+            </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl border border-slate-100">
-              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="white"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 00-.879-2.121l-3.992-3.992a2.25 2.25 0 00-1.591-.659h-1.17M8.25 18.75h6M3.375 14.25h4.875m0 0v-3.375m0 3.375h3.375"
-                  />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className={`p-7 rounded-xl border transition-all group ${dark ? "bg-zinc-900/60 backdrop-blur-sm border-zinc-800 hover:border-red-800/40" : "bg-white border-zinc-200 shadow-md hover:shadow-lg"}`}>
+              <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                Kap&#305;dan Kap&#305;ya Teslimat
+              <h3 className={`text-base font-bold mb-2 ${dark ? "text-white" : "text-zinc-900"}`}>
+                Lastik Hamuru Wigwag
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
-                Hammaddelerinizi do&#287;rudan &uuml;retim tesislerinize teslim ediyoruz.
-                Lojistik s&uuml;re&ccedil;lerle u&#287;ra&#351;man&#305;za gerek yok.
+              <p className={`text-sm leading-relaxed ${dark ? "text-zinc-300" : "text-zinc-600"}`}>
+                SBR/NR bazl&#305; lastik hamuru bile&#351;ikleri. Y&uuml;ksek hacimli &uuml;retim
+                hatlar&#305; i&ccedil;in uygun.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-100">
-              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="white"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
-                  />
+            <div className={`p-7 rounded-xl border transition-all group ${dark ? "bg-zinc-900/60 backdrop-blur-sm border-zinc-800 hover:border-red-800/40" : "bg-white border-zinc-200 shadow-md hover:shadow-lg"}`}>
+              <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                Ayl&#305;k Tedarik Y&ouml;netimi
+              <h3 className={`text-base font-bold mb-2 ${dark ? "text-white" : "text-zinc-900"}`}>
+                Lastik S&#305;rt Bile&#351;ikleri
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
-                D&uuml;zenli hammadde ihtiyac&#305;n&#305;z&#305; planl&#305;yor ve ayl&#305;k tedarik
-                zincirinizi kesintisiz y&ouml;netiyoruz.
+              <p className={`text-sm leading-relaxed ${dark ? "text-zinc-300" : "text-zinc-600"}`}>
+                SBR/NR bazl&#305; lastik s&#305;rt bile&#351;ikleri. &Ouml;zel form&uuml;lasyon ve
+                y&uuml;ksek performans standartlar&#305;nda.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-100">
-              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="white"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                  />
+            <div className={`p-7 rounded-xl border transition-all group ${dark ? "bg-zinc-900/60 backdrop-blur-sm border-zinc-800 hover:border-red-800/40" : "bg-white border-zinc-200 shadow-md hover:shadow-lg"}`}>
+              <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                G&uuml;venilir Tedarik
+              <h3 className={`text-base font-bold mb-2 ${dark ? "text-white" : "text-zinc-900"}`}>
+                Teknik Bile&#351;ikler
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
-                Kaliteli hammadde, zaman&#305;nda teslimat ve &#351;effaf s&uuml;re&ccedil;
-                y&ouml;netimi ile &uuml;retim s&uuml;reklili&#287;inizi garanti alt&#305;na al&#305;yoruz.
+              <p className={`text-sm leading-relaxed ${dark ? "text-zinc-300" : "text-zinc-600"}`}>
+                EPDM, SBR, NR, NBR ve daha fazlas&#305;. Sekt&ouml;r&#252;n&uuml;ze &ouml;zel
+                teknik kau&ccedil;uk bile&#351;ikleri.
+              </p>
+            </div>
+            <div className={`p-7 rounded-xl border transition-all group ${dark ? "bg-zinc-900/60 backdrop-blur-sm border-zinc-800 hover:border-red-800/40" : "bg-white border-zinc-200 shadow-md hover:shadow-lg"}`}>
+              <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                </svg>
+              </div>
+              <h3 className={`text-base font-bold mb-2 ${dark ? "text-white" : "text-zinc-900"}`}>
+                Off-Spec Polimerler
+              </h3>
+              <p className={`text-sm leading-relaxed ${dark ? "text-zinc-300" : "text-zinc-600"}`}>
+                Maliyet avantajl&#305; off-spec polimer tedari&#287;i.
+                Kalite kontroll&uuml; ve uygun fiyatl&#305;.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="hakkimizda" className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-slate-500 tracking-widest uppercase mb-3">
-              Hakk&#305;m&#305;zda
-            </p>
-            <h2 className="text-3xl font-bold text-slate-900">
-              &Uuml;reticilerin G&uuml;venilir Tedarik Orta&#287;&#305;
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-slate-600 leading-relaxed mb-4">
-                TONLA MALZEME olarak, end&uuml;striyel &uuml;retim yapan firmalara
-                kap&#305;dan kap&#305;ya hammadde tedarik hizmeti sunuyoruz.
+      {/* Logistics & Delivery Section */}
+      <section
+        id="lojistik"
+        className="section-bg-fixed py-24 px-6 relative"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(10,10,15,0.55), rgba(10,10,15,0.7)), url('${logisticsImg}')`,
+        }}
+      >
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-10 sm:p-14 shadow-2xl">
+            <div className="text-center mb-10">
+              <p className="text-xs font-semibold text-red-800 tracking-widest uppercase mb-3">
+                Lojistik &amp; Teslimat
               </p>
-              <p className="text-slate-600 leading-relaxed mb-4">
-                Sadece &uuml;retici firmalarla &ccedil;al&#305;&#351;&#305;yor, arac&#305; ve distrib&uuml;t&ouml;rlerle
-                i&#351; yapm&#305;yoruz. Bu sayede do&#287;rudan ve g&uuml;venilir bir tedarik
-                zinciri olu&#351;turuyoruz.
-              </p>
-              <p className="text-slate-600 leading-relaxed">
-                Ayl&#305;k tedarik planlamas&#305; ile &uuml;retim s&uuml;re&ccedil;lerinizin kesintisiz
-                devam etmesini sa&#287;l&#305;yoruz.
-              </p>
+                      <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-900">
+                        Uluslararas&#305; Tedarik Zinciri
+              </h2>
             </div>
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100">
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">1</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-slate-900 text-sm">
-                      &#304;htiya&ccedil; Analizi
-                    </h4>
-                    <p className="text-slate-500 text-sm">
-                      Hammadde ihtiyac&#305;n&#305;z&#305; detayl&#305; analiz ediyoruz.
-                    </p>
-                  </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div>
+                <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                  </svg>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">2</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-slate-900 text-sm">
-                      Tedarik Plan&#305;
-                    </h4>
-                    <p className="text-slate-500 text-sm">
-                      Ayl&#305;k tedarik plan&#305;n&#305;z&#305; olu&#351;turuyoruz.
-                    </p>
-                  </div>
+                <h3 className="font-semibold text-zinc-900 mb-2">&#304;thalat &amp; Yerel Teslimat</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">
+                  Global kaynaklardan ithalat ve yerel da&#287;&#305;t&#305;m a&#287;&#305; ile
+                  hammaddelerinizi do&#287;rudan tesislerinize ula&#351;t&#305;r&#305;yoruz.
+                </p>
+              </div>
+              <div>
+                <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">3</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-slate-900 text-sm">
-                      Kap&#305;da Teslimat
-                    </h4>
-                    <p className="text-slate-500 text-sm">
-                      Hammaddelerinizi zaman&#305;nda kap&#305;n&#305;za teslim ediyoruz.
-                    </p>
-                  </div>
+                <h3 className="font-semibold text-zinc-900 mb-2">G&uuml;mr&uuml;k&uuml; &Ouml;denmi&#351; Y&uuml;k</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">
+                  G&uuml;mr&uuml;k i&#351;lemleri tamamlanm&#305;&#351;, haz&#305;r teslimat. Siz sadece
+                  &uuml;retiminize odaklan&#305;n.
+                </p>
+              </div>
+              <div>
+                <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                  </svg>
                 </div>
+                <h3 className="font-semibold text-zinc-900 mb-2">3-6 Ayl&#305;k Planlama</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">
+                  Tedarik zinciri planlamas&#305; ile 3 ila 6 ayl&#305;k hammadde
+                  ihtiyac&#305;n&#305;z&#305; &ouml;nceden g&uuml;vence alt&#305;na al&#305;yoruz.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="iletisim" className="py-20 px-6 bg-slate-900 text-white">
+      {/* Technology Section */}
+      <section id="teknoloji" className={`relative py-24 px-6 overflow-hidden transition-colors duration-300 ${dark ? "bg-zinc-950" : "bg-white"}`}>
+        <div className="absolute inset-0 ai-grid pointer-events-none" />
+        <div className="absolute inset-0 ai-glow pointer-events-none" />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-4 ${dark ? "bg-red-900/20 border-red-800/30" : "bg-red-50 border-red-200"}`}>
+              <div className={`w-2 h-2 rounded-full bg-red-500 ${mounted ? "animate-pulse" : ""}`} />
+              <span className={`text-xs font-semibold tracking-widest uppercase ${dark ? "text-red-400" : "text-red-700"}`}>
+                Modern Teknoloji
+              </span>
+            </div>
+            <h2 className={`text-3xl sm:text-4xl font-extrabold mb-4 ${dark ? "gradient-text" : "text-zinc-900"}`}>
+              Modern Teknolojiyle G&uuml;&ccedil;lendirilmi&#351;
+            </h2>
+            <p className={`max-w-2xl mx-auto ${dark ? "text-zinc-400" : "text-zinc-600"}`}>
+              Tedarik s&uuml;re&ccedil;lerinizi modern teknoloji ile optimize
+              ediyor, daha h&#305;zl&#305; ve g&uuml;venilir hizmet sunuyoruz.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className={`p-7 rounded-xl border transition-all group ${dark ? "bg-zinc-900/80 backdrop-blur-sm border-zinc-800 hover:border-red-800/30" : "bg-zinc-50 border-zinc-200 shadow-md hover:shadow-lg"}`}>
+              <div className="w-10 h-10 bg-gradient-to-br from-red-700 to-red-900 rounded-lg flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-red-900/20 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                </svg>
+              </div>
+              <h3 className={`text-base font-bold mb-2 ${dark ? "text-white" : "text-zinc-900"}`}>
+                Hacim &#304;&#351;lem Y&ouml;netimi
+              </h3>
+              <p className={`text-sm leading-relaxed ${dark ? "text-zinc-300" : "text-zinc-600"}`}>
+                Y&uuml;ksek hacimli sipari&#351; ve i&#351;lem s&uuml;re&ccedil;lerini
+                otomatik olarak y&ouml;netin ve optimize edin.
+              </p>
+            </div>
+            <div className={`p-7 rounded-xl border transition-all group ${dark ? "bg-zinc-900/80 backdrop-blur-sm border-zinc-800 hover:border-red-800/30" : "bg-zinc-50 border-zinc-200 shadow-md hover:shadow-lg"}`}>
+              <div className="w-10 h-10 bg-gradient-to-br from-red-700 to-red-900 rounded-lg flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-red-900/20 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                </svg>
+              </div>
+              <h3 className={`text-base font-bold mb-2 ${dark ? "text-white" : "text-zinc-900"}`}>
+                Tutarl&#305; Dok&uuml;mantasyon
+              </h3>
+              <p className={`text-sm leading-relaxed ${dark ? "text-zinc-300" : "text-zinc-600"}`}>
+                T&uuml;m sipari&#351;, fatura ve sevkiyat belgeleri otomatik
+                olu&#351;turulur ve standart formatta saklan&#305;r.
+              </p>
+            </div>
+            <div className={`p-7 rounded-xl border transition-all group ${dark ? "bg-zinc-900/80 backdrop-blur-sm border-zinc-800 hover:border-red-800/30" : "bg-zinc-50 border-zinc-200 shadow-md hover:shadow-lg"}`}>
+              <div className="w-10 h-10 bg-gradient-to-br from-red-700 to-red-900 rounded-lg flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-red-900/20 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+              </div>
+              <h3 className={`text-base font-bold mb-2 ${dark ? "text-white" : "text-zinc-900"}`}>
+                Ger&ccedil;ek Zamanl&#305; Takip
+              </h3>
+              <p className={`text-sm leading-relaxed ${dark ? "text-zinc-300" : "text-zinc-600"}`}>
+                Sevkiyatlar&#305;n&#305;z&#305; ger&ccedil;ek zamanl&#305; olarak takip edin.
+                Tam g&ouml;r&uuml;n&uuml;rl&uuml;k, s&#305;f&#305;r s&uuml;rpriz.
+              </p>
+            </div>
+            <div className={`p-7 rounded-xl border transition-all group ${dark ? "bg-zinc-900/80 backdrop-blur-sm border-zinc-800 hover:border-red-800/30" : "bg-zinc-50 border-zinc-200 shadow-md hover:shadow-lg"}`}>
+              <div className="w-10 h-10 bg-gradient-to-br from-red-700 to-red-900 rounded-lg flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-red-900/20 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                </svg>
+              </div>
+              <h3 className={`text-base font-bold mb-2 ${dark ? "text-white" : "text-zinc-900"}`}>
+                Ak&#305;ll&#305; Tahminleme
+              </h3>
+              <p className={`text-sm leading-relaxed ${dark ? "text-zinc-300" : "text-zinc-600"}`}>
+                Talep tahminleme ve stok optimizasyonu ile tedarik
+                kesintilerini &ouml;nleme.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA / Contact Section */}
+      <section
+        id="iletisim"
+        className="cta-overlay py-24 px-6"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(127,29,29,0.85), rgba(80,10,10,0.92)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80')`,
+        }}
+      >
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-medium text-slate-400 tracking-widest uppercase mb-3">
+          <p className="text-xs font-semibold text-red-300 tracking-widest uppercase mb-3">
             &#304;leti&#351;im
           </p>
-          <h2 className="text-3xl font-bold mb-6">Hemen Ba&#351;layal&#305;m</h2>
-          <p className="text-slate-400 mb-8 max-w-lg mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
+            Hemen Ba&#351;layal&#305;m
+          </h2>
+          <p className="text-red-100/70 mb-8 max-w-lg mx-auto leading-relaxed">
             Hammadde tedarik ihtiya&ccedil;lar&#305;n&#305;z hakk&#305;nda konu&#351;mak i&ccedil;in sa&#287; alttaki
             sohbet butonuna t&#305;klay&#305;n veya bize ula&#351;&#305;n.
           </p>
@@ -266,7 +402,7 @@ export default function Home() {
               ) as HTMLButtonElement;
               chatBtn?.click();
             }}
-            className="px-8 py-3.5 bg-white text-slate-900 rounded-xl hover:bg-slate-100 transition-all font-medium text-sm"
+            className="px-8 py-3.5 bg-white text-red-900 font-medium text-sm tracking-wide uppercase hover:bg-red-50 transition-all"
           >
             Sohbeti Ba&#351;lat
           </button>
@@ -274,15 +410,15 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-100">
+      <footer className={`py-8 px-6 border-t transition-colors duration-300 ${dark ? "bg-zinc-950 border-white/5" : "bg-zinc-100 border-zinc-200"}`}>
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-400">
+          <p className={`text-xs ${dark ? "text-zinc-600" : "text-zinc-400"}`}>
             &copy; 2026 TONLA MALZEME END&Uuml;STR&#304;YEL HAMMADDE T&#304;CARET LTD. &#350;T&#304;.
             T&uuml;m haklar&#305; sakl&#305;d&#305;r.
           </p>
           <Link
             href="/en"
-            className="text-xs text-slate-400 hover:text-slate-600 transition-colors"
+            className={`text-xs ${dark ? "text-zinc-600" : "text-zinc-400"} hover:text-zinc-400 transition-colors`}
           >
             English Version
           </Link>

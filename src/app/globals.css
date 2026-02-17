@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 15, 23, 42;
-  --background-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 15, 15, 20;
 }
 
 body {
@@ -16,4 +16,60 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+@layer components {
+  .section-bg {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .section-bg-fixed {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .cta-overlay {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes grid-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(40px); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.ai-grid {
+  background-image:
+    linear-gradient(rgba(220, 38, 38, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220, 38, 38, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-scroll 8s linear infinite;
+}
+
+.ai-glow {
+  background: radial-gradient(ellipse at center, rgba(220, 38, 38, 0.08) 0%, transparent 70%);
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #fca5a5 50%, #ffffff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease infinite;
 }
