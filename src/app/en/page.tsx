@@ -5,40 +5,40 @@ import Link from "next/link";
 
 export default function EnglishHome() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-zinc-950">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-40">
+      <nav className="fixed top-0 w-full bg-zinc-950/90 backdrop-blur-md border-b border-white/5 z-40">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight text-slate-900">
+          <div className="flex items-center gap-3">
+            <span className="text-xl font-bold tracking-tight text-white">
               TONLA
             </span>
-            <span className="text-xs text-slate-400 hidden sm:inline">
+            <span className="text-xs text-zinc-500 hidden sm:inline font-medium tracking-wider">
               MATERIALS
             </span>
           </div>
           <div className="flex items-center gap-6">
             <a
               href="#services"
-              className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
+              className="text-sm text-zinc-400 hover:text-white transition-colors"
             >
               Services
             </a>
             <a
               href="#about"
-              className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
+              className="text-sm text-zinc-400 hover:text-white transition-colors"
             >
               About
             </a>
             <a
               href="#contact"
-              className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
+              className="text-sm text-zinc-400 hover:text-white transition-colors"
             >
               Contact
             </a>
             <Link
               href="/"
-              className="text-xs text-slate-400 hover:text-slate-600 border border-slate-200 px-2 py-1 rounded transition-colors"
+              className="text-xs text-zinc-500 hover:text-white border border-zinc-700 px-2.5 py-1 rounded transition-colors"
             >
               TR
             </Link>
@@ -46,54 +46,60 @@ export default function EnglishHome() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-medium text-slate-500 tracking-widest uppercase mb-6">
-            Industrial Raw Material Supply
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6 text-balance">
-            Door-to-door raw material supply.{" "}
-            <span className="text-slate-400">For manufacturers only.</span>
-          </h1>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            TONLA MALZEME provides reliable, on-time raw material supply
-            directly to manufacturing facilities.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => {
-                const chatBtn = document.querySelector(
-                  'button[aria-label="Chat"]'
-                ) as HTMLButtonElement;
-                chatBtn?.click();
-              }}
-              className="px-8 py-3.5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all font-medium text-sm shadow-lg shadow-slate-900/20"
-            >
-              Get In Touch
-            </button>
-            <a
-              href="#services"
-              className="px-8 py-3.5 border border-slate-200 text-slate-700 rounded-xl hover:border-slate-300 hover:bg-slate-50 transition-all font-medium text-sm"
-            >
-              Our Services
-            </a>
+      {/* Hero Section - Full screen with industrial background */}
+      <section className="hero-bg min-h-screen flex items-center justify-center px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-10 sm:p-14 shadow-2xl max-w-2xl">
+            <p className="text-xs font-semibold text-red-800 tracking-widest uppercase mb-4">
+              TONLA MATERIALS
+            </p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight mb-5 text-balance">
+              Door-to-door raw material supply.
+            </h1>
+            <p className="text-zinc-600 mb-3 leading-relaxed">
+              For manufacturers only. TONLA MALZEME provides reliable, on-time
+              raw material supply directly to manufacturing facilities.
+            </p>
+            <p className="text-red-800 text-sm font-medium mb-6">
+              Get in touch with us today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => {
+                  const chatBtn = document.querySelector(
+                    'button[aria-label="Chat"]'
+                  ) as HTMLButtonElement;
+                  chatBtn?.click();
+                }}
+                className="px-7 py-3 bg-zinc-900 text-white text-sm font-medium tracking-wide uppercase hover:bg-zinc-800 transition-all"
+              >
+                Get In Touch
+              </button>
+              <a
+                href="#services"
+                className="px-7 py-3 border border-zinc-300 text-zinc-700 text-sm font-medium tracking-wide uppercase hover:bg-zinc-100 transition-all"
+              >
+                Our Services
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-6 bg-slate-50">
+      {/* Services Section - Dark with background imagery */}
+      <section id="services" className="services-bg py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-sm font-medium text-slate-500 tracking-widest uppercase mb-3">
+            <p className="text-xs font-semibold text-red-400 tracking-widest uppercase mb-3">
               Our Services
             </p>
-            <h2 className="text-3xl font-bold text-slate-900">Why TONLA?</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Why TONLA?
+            </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl border border-slate-100">
-              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-5">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-white/15 transition-all">
+              <div className="w-12 h-12 bg-red-800 rounded-lg flex items-center justify-center mb-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -109,16 +115,16 @@ export default function EnglishHome() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 Door-to-Door Delivery
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
+              <p className="text-zinc-400 text-sm leading-relaxed">
                 We deliver raw materials directly to your production facilities.
                 No need to deal with logistics processes.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-100">
-              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-5">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-white/15 transition-all">
+              <div className="w-12 h-12 bg-red-800 rounded-lg flex items-center justify-center mb-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -134,16 +140,16 @@ export default function EnglishHome() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 Monthly Supply Management
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
+              <p className="text-zinc-400 text-sm leading-relaxed">
                 We plan your regular raw material needs and manage your monthly
                 supply chain seamlessly.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-100">
-              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-5">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-white/15 transition-all">
+              <div className="w-12 h-12 bg-red-800 rounded-lg flex items-center justify-center mb-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -159,10 +165,10 @@ export default function EnglishHome() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 Reliable Supply
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
+              <p className="text-zinc-400 text-sm leading-relaxed">
                 Quality raw materials, on-time delivery, and transparent process
                 management to ensure your production continuity.
               </p>
@@ -171,70 +177,70 @@ export default function EnglishHome() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-slate-500 tracking-widest uppercase mb-3">
-              About Us
-            </p>
-            <h2 className="text-3xl font-bold text-slate-900">
-              Your Trusted Supply Partner
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-slate-600 leading-relaxed mb-4">
-                At TONLA MALZEME, we provide door-to-door raw material supply
-                services to industrial manufacturing companies.
+      {/* About Section - Full width image background with white card */}
+      <section id="about" className="about-bg py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-10 sm:p-14 shadow-2xl">
+            <div className="text-center mb-10">
+              <p className="text-xs font-semibold text-red-800 tracking-widest uppercase mb-3">
+                About Us
               </p>
-              <p className="text-slate-600 leading-relaxed mb-4">
-                We exclusively work with manufacturers &mdash; not brokers or
-                distributors. This allows us to build a direct and reliable
-                supply chain.
-              </p>
-              <p className="text-slate-600 leading-relaxed">
-                Through monthly supply planning, we ensure your production
-                processes continue without interruption.
-              </p>
+              <h2 className="text-3xl font-bold text-zinc-900">
+                Your Trusted Supply Partner
+              </h2>
             </div>
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100">
-              <div className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              <div>
+                <p className="text-zinc-600 leading-relaxed mb-4">
+                  At TONLA MALZEME, we provide door-to-door raw material supply
+                  services to industrial manufacturing companies.
+                </p>
+                <p className="text-zinc-600 leading-relaxed mb-4">
+                  We exclusively work with manufacturers &mdash; not brokers or
+                  distributors. This allows us to build a direct and reliable
+                  supply chain.
+                </p>
+                <p className="text-zinc-600 leading-relaxed">
+                  Through monthly supply planning, we ensure your production
+                  processes continue without interruption.
+                </p>
+              </div>
+              <div className="space-y-5">
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">1</span>
+                  <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm font-bold">1</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-slate-900 text-sm">
+                    <h4 className="font-semibold text-zinc-900">
                       Needs Analysis
                     </h4>
-                    <p className="text-slate-500 text-sm">
+                    <p className="text-zinc-500 text-sm">
                       We analyze your raw material needs in detail.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">2</span>
+                  <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm font-bold">2</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-slate-900 text-sm">
+                    <h4 className="font-semibold text-zinc-900">
                       Supply Plan
                     </h4>
-                    <p className="text-slate-500 text-sm">
+                    <p className="text-zinc-500 text-sm">
                       We create your monthly supply plan.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">3</span>
+                  <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm font-bold">3</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-slate-900 text-sm">
+                    <h4 className="font-semibold text-zinc-900">
                       Doorstep Delivery
                     </h4>
-                    <p className="text-slate-500 text-sm">
+                    <p className="text-zinc-500 text-sm">
                       We deliver your raw materials on time to your door.
                     </p>
                   </div>
@@ -245,14 +251,16 @@ export default function EnglishHome() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-slate-900 text-white">
+      {/* CTA / Contact Section - Dark red industrial */}
+      <section id="contact" className="cta-bg py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-medium text-slate-400 tracking-widest uppercase mb-3">
+          <p className="text-xs font-semibold text-red-300 tracking-widest uppercase mb-3">
             Contact
           </p>
-          <h2 className="text-3xl font-bold mb-6">Let&apos;s Get Started</h2>
-          <p className="text-slate-400 mb-8 max-w-lg mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Let&apos;s Get Started
+          </h2>
+          <p className="text-red-100/70 mb-8 max-w-lg mx-auto leading-relaxed">
             Click the chat button in the bottom right to discuss your raw
             material supply needs, or reach out to us directly.
           </p>
@@ -263,7 +271,7 @@ export default function EnglishHome() {
               ) as HTMLButtonElement;
               chatBtn?.click();
             }}
-            className="px-8 py-3.5 bg-white text-slate-900 rounded-xl hover:bg-slate-100 transition-all font-medium text-sm"
+            className="px-8 py-3.5 bg-white text-red-900 font-medium text-sm tracking-wide uppercase hover:bg-red-50 transition-all"
           >
             Start Chat
           </button>
@@ -271,15 +279,15 @@ export default function EnglishHome() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-100">
+      <footer className="py-8 px-6 bg-zinc-950 border-t border-white/5">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-zinc-600">
             &copy; 2026 TONLA MALZEME END&Uuml;STR&#304;YEL HAMMADDE T&#304;CARET
             LTD. &#350;T&#304;. All rights reserved.
           </p>
           <Link
             href="/"
-            className="text-xs text-slate-400 hover:text-slate-600 transition-colors"
+            className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors"
           >
             T&uuml;rk&ccedil;e Versiyon
           </Link>

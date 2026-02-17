@@ -5,40 +5,40 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-zinc-950">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-40">
+      <nav className="fixed top-0 w-full bg-zinc-950/90 backdrop-blur-md border-b border-white/5 z-40">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight text-slate-900">
+          <div className="flex items-center gap-3">
+            <span className="text-xl font-bold tracking-tight text-white">
               TONLA
             </span>
-            <span className="text-xs text-slate-400 hidden sm:inline">
+            <span className="text-xs text-zinc-500 hidden sm:inline font-medium tracking-wider">
               MALZEME
             </span>
           </div>
           <div className="flex items-center gap-6">
             <a
               href="#hizmetler"
-              className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
+              className="text-sm text-zinc-400 hover:text-white transition-colors"
             >
               Hizmetler
             </a>
             <a
               href="#hakkimizda"
-              className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
+              className="text-sm text-zinc-400 hover:text-white transition-colors"
             >
               Hakk&#305;m&#305;zda
             </a>
             <a
               href="#iletisim"
-              className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
+              className="text-sm text-zinc-400 hover:text-white transition-colors"
             >
               &#304;leti&#351;im
             </a>
             <Link
               href="/en"
-              className="text-xs text-slate-400 hover:text-slate-600 border border-slate-200 px-2 py-1 rounded transition-colors"
+              className="text-xs text-zinc-500 hover:text-white border border-zinc-700 px-2.5 py-1 rounded transition-colors"
             >
               EN
             </Link>
@@ -46,57 +46,61 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-medium text-slate-500 tracking-widest uppercase mb-6">
-            End&uuml;striyel Hammadde Tedarik
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6 text-balance">
-            Kap&#305;dan kap&#305;ya hammadde tedariki.{" "}
-            <span className="text-slate-400">Sadece &uuml;reticiler i&ccedil;in.</span>
-          </h1>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            TONLA MALZEME END&Uuml;STR&#304;YEL HAMMADDE T&#304;CARET LTD. &#350;T&#304; olarak,
-            &uuml;retici firmalara g&uuml;venilir ve zaman&#305;nda hammadde tedariki
-            sa&#287;l&#305;yoruz.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => {
-                const chatBtn = document.querySelector(
-                  'button[aria-label="Chat"]'
-                ) as HTMLButtonElement;
-                chatBtn?.click();
-              }}
-              className="px-8 py-3.5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all font-medium text-sm shadow-lg shadow-slate-900/20"
-            >
-              Bizimle &#304;leti&#351;ime Ge&ccedil;in
-            </button>
-            <a
-              href="#hizmetler"
-              className="px-8 py-3.5 border border-slate-200 text-slate-700 rounded-xl hover:border-slate-300 hover:bg-slate-50 transition-all font-medium text-sm"
-            >
-              Hizmetlerimiz
-            </a>
+      {/* Hero Section - Full screen with industrial background */}
+      <section className="hero-bg min-h-screen flex items-center justify-center px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-10 sm:p-14 shadow-2xl max-w-2xl">
+            <p className="text-xs font-semibold text-red-800 tracking-widest uppercase mb-4">
+              TONLA MALZEME
+            </p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight mb-5 text-balance">
+              Kap&#305;dan kap&#305;ya hammadde tedariki.
+            </h1>
+            <p className="text-zinc-600 mb-3 leading-relaxed">
+              Sadece &uuml;reticiler i&ccedil;in. TONLA MALZEME END&Uuml;STR&#304;YEL HAMMADDE
+              T&#304;CARET LTD. &#350;T&#304; olarak, &uuml;retici firmalara g&uuml;venilir ve
+              zaman&#305;nda hammadde tedariki sa&#287;l&#305;yoruz.
+            </p>
+            <p className="text-red-800 text-sm font-medium mb-6">
+              Hemen bizimle ileti&#351;ime ge&ccedil;in.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => {
+                  const chatBtn = document.querySelector(
+                    'button[aria-label="Chat"]'
+                  ) as HTMLButtonElement;
+                  chatBtn?.click();
+                }}
+                className="px-7 py-3 bg-zinc-900 text-white text-sm font-medium tracking-wide uppercase hover:bg-zinc-800 transition-all"
+              >
+                Bizimle &#304;leti&#351;ime Ge&ccedil;in
+              </button>
+              <a
+                href="#hizmetler"
+                className="px-7 py-3 border border-zinc-300 text-zinc-700 text-sm font-medium tracking-wide uppercase hover:bg-zinc-100 transition-all"
+              >
+                Hizmetlerimiz
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="hizmetler" className="py-20 px-6 bg-slate-50">
+      {/* Services Section - Dark with background imagery */}
+      <section id="hizmetler" className="services-bg py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-sm font-medium text-slate-500 tracking-widest uppercase mb-3">
+            <p className="text-xs font-semibold text-red-400 tracking-widest uppercase mb-3">
               Hizmetlerimiz
             </p>
-            <h2 className="text-3xl font-bold text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
               Neden TONLA?
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl border border-slate-100">
-              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-5">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-white/15 transition-all">
+              <div className="w-12 h-12 bg-red-800 rounded-lg flex items-center justify-center mb-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -112,16 +116,16 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 Kap&#305;dan Kap&#305;ya Teslimat
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
+              <p className="text-zinc-400 text-sm leading-relaxed">
                 Hammaddelerinizi do&#287;rudan &uuml;retim tesislerinize teslim ediyoruz.
                 Lojistik s&uuml;re&ccedil;lerle u&#287;ra&#351;man&#305;za gerek yok.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-100">
-              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-5">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-white/15 transition-all">
+              <div className="w-12 h-12 bg-red-800 rounded-lg flex items-center justify-center mb-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -137,16 +141,16 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 Ayl&#305;k Tedarik Y&ouml;netimi
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
+              <p className="text-zinc-400 text-sm leading-relaxed">
                 D&uuml;zenli hammadde ihtiyac&#305;n&#305;z&#305; planl&#305;yor ve ayl&#305;k tedarik
                 zincirinizi kesintisiz y&ouml;netiyoruz.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-100">
-              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-5">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-white/15 transition-all">
+              <div className="w-12 h-12 bg-red-800 rounded-lg flex items-center justify-center mb-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -162,10 +166,10 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 G&uuml;venilir Tedarik
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
+              <p className="text-zinc-400 text-sm leading-relaxed">
                 Kaliteli hammadde, zaman&#305;nda teslimat ve &#351;effaf s&uuml;re&ccedil;
                 y&ouml;netimi ile &uuml;retim s&uuml;reklili&#287;inizi garanti alt&#305;na al&#305;yoruz.
               </p>
@@ -174,70 +178,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="hakkimizda" className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-slate-500 tracking-widest uppercase mb-3">
-              Hakk&#305;m&#305;zda
-            </p>
-            <h2 className="text-3xl font-bold text-slate-900">
-              &Uuml;reticilerin G&uuml;venilir Tedarik Orta&#287;&#305;
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-slate-600 leading-relaxed mb-4">
-                TONLA MALZEME olarak, end&uuml;striyel &uuml;retim yapan firmalara
-                kap&#305;dan kap&#305;ya hammadde tedarik hizmeti sunuyoruz.
+      {/* About Section - Full width image background with white card */}
+      <section id="hakkimizda" className="about-bg py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-10 sm:p-14 shadow-2xl">
+            <div className="text-center mb-10">
+              <p className="text-xs font-semibold text-red-800 tracking-widest uppercase mb-3">
+                Hakk&#305;m&#305;zda
               </p>
-              <p className="text-slate-600 leading-relaxed mb-4">
-                Sadece &uuml;retici firmalarla &ccedil;al&#305;&#351;&#305;yor, arac&#305; ve distrib&uuml;t&ouml;rlerle
-                i&#351; yapm&#305;yoruz. Bu sayede do&#287;rudan ve g&uuml;venilir bir tedarik
-                zinciri olu&#351;turuyoruz.
-              </p>
-              <p className="text-slate-600 leading-relaxed">
-                Ayl&#305;k tedarik planlamas&#305; ile &uuml;retim s&uuml;re&ccedil;lerinizin kesintisiz
-                devam etmesini sa&#287;l&#305;yoruz.
-              </p>
+              <h2 className="text-3xl font-bold text-zinc-900">
+                &Uuml;reticilerin G&uuml;venilir Tedarik Orta&#287;&#305;
+              </h2>
             </div>
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100">
-              <div className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              <div>
+                <p className="text-zinc-600 leading-relaxed mb-4">
+                  TONLA MALZEME olarak, end&uuml;striyel &uuml;retim yapan firmalara
+                  kap&#305;dan kap&#305;ya hammadde tedarik hizmeti sunuyoruz.
+                </p>
+                <p className="text-zinc-600 leading-relaxed mb-4">
+                  Sadece &uuml;retici firmalarla &ccedil;al&#305;&#351;&#305;yor, arac&#305; ve distrib&uuml;t&ouml;rlerle
+                  i&#351; yapm&#305;yoruz. Bu sayede do&#287;rudan ve g&uuml;venilir bir tedarik
+                  zinciri olu&#351;turuyoruz.
+                </p>
+                <p className="text-zinc-600 leading-relaxed">
+                  Ayl&#305;k tedarik planlamas&#305; ile &uuml;retim s&uuml;re&ccedil;lerinizin kesintisiz
+                  devam etmesini sa&#287;l&#305;yoruz.
+                </p>
+              </div>
+              <div className="space-y-5">
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">1</span>
+                  <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm font-bold">1</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-slate-900 text-sm">
+                    <h4 className="font-semibold text-zinc-900">
                       &#304;htiya&ccedil; Analizi
                     </h4>
-                    <p className="text-slate-500 text-sm">
+                    <p className="text-zinc-500 text-sm">
                       Hammadde ihtiyac&#305;n&#305;z&#305; detayl&#305; analiz ediyoruz.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">2</span>
+                  <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm font-bold">2</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-slate-900 text-sm">
+                    <h4 className="font-semibold text-zinc-900">
                       Tedarik Plan&#305;
                     </h4>
-                    <p className="text-slate-500 text-sm">
+                    <p className="text-zinc-500 text-sm">
                       Ayl&#305;k tedarik plan&#305;n&#305;z&#305; olu&#351;turuyoruz.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">3</span>
+                  <div className="w-10 h-10 bg-red-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm font-bold">3</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-slate-900 text-sm">
+                    <h4 className="font-semibold text-zinc-900">
                       Kap&#305;da Teslimat
                     </h4>
-                    <p className="text-slate-500 text-sm">
+                    <p className="text-zinc-500 text-sm">
                       Hammaddelerinizi zaman&#305;nda kap&#305;n&#305;za teslim ediyoruz.
                     </p>
                   </div>
@@ -248,14 +252,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="iletisim" className="py-20 px-6 bg-slate-900 text-white">
+      {/* CTA / Contact Section - Dark red industrial */}
+      <section id="iletisim" className="cta-bg py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-medium text-slate-400 tracking-widest uppercase mb-3">
+          <p className="text-xs font-semibold text-red-300 tracking-widest uppercase mb-3">
             &#304;leti&#351;im
           </p>
-          <h2 className="text-3xl font-bold mb-6">Hemen Ba&#351;layal&#305;m</h2>
-          <p className="text-slate-400 mb-8 max-w-lg mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Hemen Ba&#351;layal&#305;m
+          </h2>
+          <p className="text-red-100/70 mb-8 max-w-lg mx-auto leading-relaxed">
             Hammadde tedarik ihtiya&ccedil;lar&#305;n&#305;z hakk&#305;nda konu&#351;mak i&ccedil;in sa&#287; alttaki
             sohbet butonuna t&#305;klay&#305;n veya bize ula&#351;&#305;n.
           </p>
@@ -266,7 +272,7 @@ export default function Home() {
               ) as HTMLButtonElement;
               chatBtn?.click();
             }}
-            className="px-8 py-3.5 bg-white text-slate-900 rounded-xl hover:bg-slate-100 transition-all font-medium text-sm"
+            className="px-8 py-3.5 bg-white text-red-900 font-medium text-sm tracking-wide uppercase hover:bg-red-50 transition-all"
           >
             Sohbeti Ba&#351;lat
           </button>
@@ -274,15 +280,15 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-100">
+      <footer className="py-8 px-6 bg-zinc-950 border-t border-white/5">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-zinc-600">
             &copy; 2026 TONLA MALZEME END&Uuml;STR&#304;YEL HAMMADDE T&#304;CARET LTD. &#350;T&#304;.
             T&uuml;m haklar&#305; sakl&#305;d&#305;r.
           </p>
           <Link
             href="/en"
-            className="text-xs text-slate-400 hover:text-slate-600 transition-colors"
+            className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors"
           >
             English Version
           </Link>
