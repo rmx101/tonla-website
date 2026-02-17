@@ -5,22 +5,22 @@ import Link from "next/link";
 import { useState, useEffect, useMemo, useCallback } from "react";
 
 const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80",
-  "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1920&q=80",
-  "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1920&q=80",
-  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&q=80",
+  "https://images.unsplash.com/photo-1652878856788-6dc9e56c9235?w=1920&q=80",
+  "https://images.unsplash.com/photo-1756705406506-50500a12463c?w=1920&q=80",
+  "https://images.unsplash.com/photo-1637844528679-f91e0b15f3e3?w=1920&q=80",
+  "https://images.unsplash.com/photo-1683436491260-37c6c692cf51?w=1920&q=80",
 ];
 
 const PRODUCTS_IMAGES = [
-  "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1920&q=80",
-  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80",
-  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80",
+  "https://images.unsplash.com/photo-1644079446600-219068676743?w=1920&q=80",
+  "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1920&q=80",
+  "https://images.unsplash.com/photo-1606824722920-4c652a70f348?w=1920&q=80",
 ];
 
 const LOGISTICS_IMAGES = [
-  "https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=1920&q=80",
-  "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&q=80",
-  "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1920&q=80",
+  "https://images.unsplash.com/photo-1563147236-8b428c840b75?w=1920&q=80",
+  "https://images.unsplash.com/photo-1593617762209-00636c2ca9c6?w=1920&q=80",
+  "https://images.unsplash.com/photo-1602009775595-f35cf45d9f33?w=1920&q=80",
 ];
 
 const TAGLINES_EN = [
